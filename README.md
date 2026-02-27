@@ -19,47 +19,9 @@
 
 ## Architecture
 
-```
-                    ┌─────────────────────────────────────────────┐
-                    │          Patient Data (Modalities M)        │
-                    │     Clinical Text  |  MRI  |  EEG           │
-                    └──────────┬─────────┬───────┬────────────────┘
-                               │         │       │
-              ┌────────────────┼─────────┼───────┼────────────────┐
-              │    Discriminative Models  │  Generative Agents     │
-              │  ┌──────────────────┐    │  ┌──────────────────┐  │
-              │  │ TF-IDF + XGBoost │    │  │ Text Agent       │  │
-              │  │ PubMedBERT       │    │  │ (MedGemma-27B)   │  │
-              │  │ ResNet-50        │    │  ├──────────────────┤  │
-              │  │ MedSigLIP-448    │    │  │ MRI Agent        │  │
-              │  │ REVE (EEG)       │    │  │ (MedGemma-4B)    │  │
-              │  └────────┬─────────┘    │  ├──────────────────┤  │
-              │           │              │  │ EEG Agent        │  │
-              │     Ψ(Ŷ) → Textual      │  │ (MedGemma-4B)    │  │
-              │     auxiliary evidence   │  └────────┬─────────┘  │
-              └───────────┬──────────────┼───────────┘            │
-                          │              │                        │
-                          ▼              ▼                        │
-              ┌──────────────────────────────────┐                │
-              │   Aggregated Multimodal Evidence  │                │
-              │   E = ∪{ s̃ᵢ⁽ᵍ⁾, s̃ᵢ⁽ᵈ⁾ }         │                │
-              └──────────────┬───────────────────┘                │
-                             │                                    │
-              ┌──────────────▼───────────────────┐                │
-              │  Guideline-Grounded Orchestrator  │                │
-              │  (GPT-OSS-120B + ILAE RAG)       │◄─── Multi-turn │
-              │                                   │     follow-ups │
-              │  Action ∈ {FOLLOW-UP, COMPLETE}   │────────────────┘
-              └──────────────┬───────────────────┘
-                             │
-                             ▼
-              ┌──────────────────────────────────┐
-              │        Final Predictions          │
-              │  Epilepsy Type | Seizure Type     │
-              │  EZ Localization | ASM Response   │
-              │  Surgical Outcome                 │
-              └──────────────────────────────────┘
-```
+![EPI-GUIDE Architecture](architecture.png)
+
+*Figure 1: The hybrid discriminative-generative architecture of EPI-GUIDE, demonstrating the modality-specific models feeding into the guideline-grounded orchestrating agent.*
 
 ---
 
