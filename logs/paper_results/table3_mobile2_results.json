@@ -1,0 +1,97 @@
+{
+  "paper": "A Guideline-Grounded Multi-Agent Framework for Holistic Epilepsy Management",
+  "venue": "MICCAI 2026",
+  "table": "Table 3 — Results on Public Mobile-2 sEEG Dataset",
+  "dataset": "Public Mobile-2 sEEG Dataset",
+  "n_subjects": 7,
+  "n_sessions": 61,
+  "protocol": "Leave-one-subject-out cross-validation (classical baselines); zero-shot (generative/MEAF methods)",
+  "tasks": {
+    "ez_region": "EZ Region Classification — 3 classes: Temporal, Frontal, Parieto-Occipital (Accuracy %)",
+    "stim_intensity": "Stimulation Intensity Classification — 2 classes: Low, High (Accuracy %)",
+    "source_localization": "Source Localization — MNI coordinate regression (Mean Error in mm, lower is better)"
+  },
+  "note_mean_acc": "Mean Accuracy computed over EZ Region and Stimulation Intensity classification tasks only (Source Localization is a regression task and not included in mean accuracy)",
+  "results": [
+    {
+      "category": "Classical Signal Baselines",
+      "method": "GFP + XGBoost",
+      "modality": "EEG",
+      "ez_region_acc": 23.8,
+      "ez_region_std": 19.0,
+      "stim_intensity_acc": 48.4,
+      "stim_intensity_std": 37.2,
+      "source_loc_mean_mm": null,
+      "mean_acc": 36.1
+    },
+    {
+      "category": "Classical Signal Baselines",
+      "method": "BandPower + XGBoost",
+      "modality": "EEG",
+      "ez_region_acc": 36.7,
+      "ez_region_std": 9.7,
+      "stim_intensity_acc": 42.7,
+      "stim_intensity_std": 28.0,
+      "source_loc_mean_mm": null,
+      "mean_acc": 39.7
+    },
+    {
+      "category": "Discriminative Foundation Model",
+      "method": "REVE (frozen encoder)",
+      "modality": "EEG",
+      "ez_region_acc": 75.3,
+      "ez_region_std": 15.5,
+      "stim_intensity_acc": 85.7,
+      "stim_intensity_std": 28.6,
+      "source_loc_mean_mm": 68.3,
+      "source_loc_std_mm": 13.2,
+      "mean_acc": 80.5
+    },
+    {
+      "category": "Generative (zero-shot)",
+      "method": "MedGemma Text-Only",
+      "modality": "T",
+      "ez_region_acc": 100.0,
+      "stim_intensity_acc": 61.8,
+      "source_loc_mean_mm": 49.3,
+      "mean_acc": 80.9,
+      "note": "EZ region accuracy is 100% due to uniform region label in the text-only inference subset"
+    },
+    {
+      "category": "Generative (zero-shot)",
+      "method": "Multi-Agent LLM (no discriminative)",
+      "modality": "T+I",
+      "ez_region_acc": 49.2,
+      "stim_intensity_acc": 96.7,
+      "source_loc_mean_mm": 69.6,
+      "mean_acc": 73.0
+    },
+    {
+      "category": "Ours — MEAF",
+      "method": "MEAF Single-Pass",
+      "modality": "T+I",
+      "ez_region_acc": 50.8,
+      "stim_intensity_acc": 98.4,
+      "source_loc_mean_mm": 69.5,
+      "mean_acc": 74.6
+    },
+    {
+      "category": "Ours — MEAF",
+      "method": "MEAF Multi-Turn",
+      "modality": "T+I",
+      "ez_region_acc": 45.9,
+      "stim_intensity_acc": 98.4,
+      "source_loc_mean_mm": 69.7,
+      "mean_acc": 72.2
+    },
+    {
+      "category": "Ours — MEAF",
+      "method": "MEAF Full",
+      "modality": "T+I",
+      "ez_region_acc": 41.0,
+      "stim_intensity_acc": 98.4,
+      "source_loc_mean_mm": 69.1,
+      "mean_acc": 69.7
+    }
+  ]
+}

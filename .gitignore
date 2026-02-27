@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+
+# Checkpoints & model weights
+checkpoints/
+
+# Large data files (tracked via compressed archives)
+*.npy
+*.fif
+*.nii
+*.nii.gz
+*.vhdr
+*.eeg
+*.vmrk
+*.set
+*.fdt
+*.edf
+*.bdf
+
+# Expanded dataset directories (use compressed archives instead)
+external_data/HD-EEG/
+external_data/Epilepsy-KB/
+external_data/MME/figures/
+external_data/mobile2_data/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+hf.txt
+*.env

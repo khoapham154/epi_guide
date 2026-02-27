@@ -1,0 +1,97 @@
+{
+  "paper": "A Guideline-Grounded Multi-Agent Framework for Holistic Epilepsy Management",
+  "venue": "MICCAI 2026",
+  "table": "Table 2 — Ablation of MEAF components",
+  "dataset": "In-house Quality Dataset (gold tier)",
+  "n_patients": 306,
+  "components": {
+    "Disc": "Binary discriminative signal injection (calibrated softmax probabilities from all trained classifiers, presented per-class)",
+    "RAG": "Guideline-grounded retrieval over ILAE 2017/2025, NICE, and AES guideline chunks (cosine similarity retrieval)",
+    "MT": "Multi-turn deliberation — iterative follow-up Q&A between orchestrator and modality agents (max 3 rounds)"
+  },
+  "key_findings": {
+    "disc_injection": "Primary performance driver: +18.0 pp gain (60.8% → 78.8%) over LLM-only baseline",
+    "rag_grounding": "Task-selective improvement: +0.6 pp mean (78.8% → 79.4%), concentrated on EZ localization (+0.6%) and surgery outcome (+0.8%)",
+    "multi_turn": "Marginal accuracy gain (+0.1 pp) at 2.4× inference cost (273 vs. 647 minutes for full cohort)"
+  },
+  "inference_time_minutes": {
+    "single_pass": 273,
+    "multi_turn": 647
+  },
+  "results": [
+    {
+      "configuration": "LLM orchestrator only",
+      "disc": false,
+      "rag": false,
+      "mt": false,
+      "epilepsy_type": 74.3,
+      "seizure_type": 55.2,
+      "ez_localization": 60.3,
+      "aed_response": 63.2,
+      "surgery_outcome": 51.1,
+      "mean": 60.8
+    },
+    {
+      "configuration": "+ RAG only",
+      "disc": false,
+      "rag": true,
+      "mt": false,
+      "epilepsy_type": 76.1,
+      "seizure_type": 57.8,
+      "ez_localization": 62.4,
+      "aed_response": 64.8,
+      "surgery_outcome": 53.6,
+      "mean": 62.9
+    },
+    {
+      "configuration": "+ Disc. only",
+      "disc": true,
+      "rag": false,
+      "mt": false,
+      "epilepsy_type": 83.2,
+      "seizure_type": 70.4,
+      "ez_localization": 84.1,
+      "aed_response": 77.5,
+      "surgery_outcome": 78.9,
+      "mean": 78.8
+    },
+    {
+      "configuration": "+ Disc. + RAG",
+      "disc": true,
+      "rag": true,
+      "mt": false,
+      "epilepsy_type": 83.6,
+      "seizure_type": 71.1,
+      "ez_localization": 84.7,
+      "aed_response": 77.7,
+      "surgery_outcome": 79.7,
+      "mean": 79.4
+    },
+    {
+      "configuration": "+ Disc. + RAG + MT",
+      "disc": true,
+      "rag": true,
+      "mt": true,
+      "epilepsy_type": 83.6,
+      "seizure_type": 71.1,
+      "ez_localization": 85.1,
+      "aed_response": 78.1,
+      "surgery_outcome": 79.7,
+      "mean": 79.5
+    },
+    {
+      "configuration": "MEAF (Full)",
+      "disc": true,
+      "rag": true,
+      "mt": true,
+      "epilepsy_type": 89.5,
+      "seizure_type": 77.5,
+      "ez_localization": 91.0,
+      "aed_response": 84.8,
+      "surgery_outcome": 86.2,
+      "mean": 85.8,
+      "best": true,
+      "note": "Full MEAF includes few-shot retrieval and per-task calibrated weights beyond the basic ablation variants"
+    }
+  ]
+}

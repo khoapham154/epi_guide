@@ -1,0 +1,195 @@
+{
+  "paper": "A Guideline-Grounded Multi-Agent Framework for Holistic Epilepsy Management",
+  "venue": "MICCAI 2026",
+  "table": "Table 1 — Accuracy (%) on five epilepsy management tasks",
+  "dataset": "In-house Quality Dataset (gold tier)",
+  "n_patients": 306,
+  "n_per_task": {
+    "epilepsy_type": 304,
+    "seizure_type": 301,
+    "ez_localization": 242,
+    "aed_response": 242,
+    "surgery_outcome": 133
+  },
+  "note_image_subsets": "Image discriminative models evaluated on available imaging subsets (MRI: 69–94; EEG: 28–71)",
+  "modality_legend": {
+    "T": "Clinical text",
+    "IMRI": "MRI images",
+    "IEEG": "EEG images"
+  },
+  "results": [
+    {
+      "category": "Generative (zero-shot)",
+      "method": "MedGemma-27B",
+      "reference": "[21]",
+      "modality": "T",
+      "epilepsy_type": 72.4,
+      "seizure_type": 53.2,
+      "ez_localization": 67.8,
+      "aed_response": 63.2,
+      "surgery_outcome": 52.6,
+      "mean": 61.8
+    },
+    {
+      "category": "Generative (zero-shot)",
+      "method": "Multi-Agent Pipeline",
+      "modality": "T+I",
+      "epilepsy_type": 71.4,
+      "seizure_type": 52.8,
+      "ez_localization": 59.9,
+      "aed_response": 63.2,
+      "surgery_outcome": 48.9,
+      "mean": 59.2
+    },
+    {
+      "category": "Generative (zero-shot)",
+      "method": "Multi-Turn Deliberation",
+      "modality": "T+I",
+      "epilepsy_type": 71.4,
+      "seizure_type": 52.5,
+      "ez_localization": 62.4,
+      "aed_response": 62.8,
+      "surgery_outcome": 47.4,
+      "mean": 59.3
+    },
+    {
+      "category": "MRI-based",
+      "method": "MedGemma-4B",
+      "reference": "[21]",
+      "modality": "IMRI",
+      "epilepsy_type": 52.2,
+      "seizure_type": 30.0,
+      "ez_localization": 56.5,
+      "aed_response": 8.1,
+      "surgery_outcome": 0.0,
+      "mean": 29.4
+    },
+    {
+      "category": "MRI-based",
+      "method": "ResNet-50",
+      "reference": "[8]",
+      "modality": "IMRI",
+      "epilepsy_type": 71.8,
+      "seizure_type": 57.8,
+      "ez_localization": 79.7,
+      "aed_response": 78.4,
+      "surgery_outcome": 56.1,
+      "mean": 68.8
+    },
+    {
+      "category": "MRI-based",
+      "method": "MedSigLIP-448",
+      "reference": "[21]",
+      "modality": "IMRI",
+      "epilepsy_type": 82.6,
+      "seizure_type": 61.1,
+      "ez_localization": 74.0,
+      "aed_response": 79.9,
+      "surgery_outcome": 79.3,
+      "mean": 75.4
+    },
+    {
+      "category": "EEG-based",
+      "method": "ResNet-50",
+      "reference": "[8]",
+      "modality": "IEEG",
+      "epilepsy_type": 69.1,
+      "seizure_type": 56.5,
+      "ez_localization": 65.3,
+      "aed_response": 87.1,
+      "surgery_outcome": 40.7,
+      "mean": 63.7
+    },
+    {
+      "category": "EEG-based",
+      "method": "MedSigLIP-448",
+      "reference": "[21]",
+      "modality": "IEEG",
+      "epilepsy_type": 74.7,
+      "seizure_type": 52.2,
+      "ez_localization": 73.1,
+      "aed_response": 87.1,
+      "surgery_outcome": 75.3,
+      "mean": 72.5
+    },
+    {
+      "category": "Discriminative (text-based)",
+      "method": "TF-IDF + XGBoost",
+      "modality": "T",
+      "epilepsy_type": 78.3,
+      "seizure_type": 70.4,
+      "ez_localization": 81.8,
+      "aed_response": 76.4,
+      "surgery_outcome": 68.4,
+      "mean": 75.1
+    },
+    {
+      "category": "Discriminative (text-based)",
+      "method": "PubMedBERT",
+      "reference": "[7]",
+      "modality": "T",
+      "epilepsy_type": 83.9,
+      "seizure_type": 65.1,
+      "ez_localization": 83.5,
+      "aed_response": 75.2,
+      "surgery_outcome": 80.5,
+      "mean": 77.6
+    },
+    {
+      "category": "Discriminative (ensemble)",
+      "method": "Weighted Ensemble",
+      "modality": "T+I",
+      "epilepsy_type": 81.9,
+      "seizure_type": 69.4,
+      "ez_localization": 84.3,
+      "aed_response": 78.9,
+      "surgery_outcome": 79.0,
+      "mean": 78.7
+    },
+    {
+      "category": "Discriminative (ensemble)",
+      "method": "Stacking Ensemble",
+      "modality": "T+I",
+      "epilepsy_type": 82.2,
+      "seizure_type": 70.1,
+      "ez_localization": 83.1,
+      "aed_response": 78.5,
+      "surgery_outcome": 75.9,
+      "mean": 77.9
+    },
+    {
+      "category": "Ours — MEAF",
+      "method": "MEAF Single-Pass",
+      "modality": "T+I",
+      "epilepsy_type": 86.2,
+      "seizure_type": 73.5,
+      "ez_localization": 87.1,
+      "aed_response": 80.5,
+      "surgery_outcome": 82.6,
+      "mean": 82.0
+    },
+    {
+      "category": "Ours — MEAF",
+      "method": "MEAF Multi-Turn",
+      "modality": "T+I",
+      "epilepsy_type": 86.2,
+      "seizure_type": 73.8,
+      "ez_localization": 87.5,
+      "aed_response": 81.0,
+      "surgery_outcome": 82.6,
+      "mean": 82.2
+    },
+    {
+      "category": "Ours — MEAF",
+      "method": "MEAF (Full)",
+      "modality": "T+I",
+      "epilepsy_type": 89.5,
+      "seizure_type": 77.5,
+      "ez_localization": 91.0,
+      "aed_response": 84.8,
+      "surgery_outcome": 86.2,
+      "mean": 85.8,
+      "best": true
+    }
+  ]
+}
