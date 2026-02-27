@@ -1,4 +1,4 @@
-"""Configuration module for MEAF v2."""
+"""Configuration module for EPI-GUIDE v2."""
 
 from .default import (
     Config,

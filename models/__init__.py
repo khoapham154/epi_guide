@@ -1,4 +1,4 @@
-"""MEAF v2 Models - Text-only architecture (no fusion)."""
+"""EPI-GUIDE Models - Modality-specific agents and orchestrator."""
 
 from .text_agent import TextAgent
 from .mri_agent import MRIAgent

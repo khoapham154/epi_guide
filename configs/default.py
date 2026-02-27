@@ -154,8 +154,8 @@ class EEGImageConfig:
 
 @dataclass
 class OrchestratorConfig:
-    """Llama-3.3-70B-Instruct orchestrator with RAG. Receives text from all agents."""
-    model_name: str = "meta-llama/Llama-3.3-70B-Instruct"
+    """GPT-OSS-120B orchestrator with RAG. Receives text from all agents."""
+    model_name: str = "openai/gpt-oss-120b"
     torch_dtype: str = "bfloat16"
     device_map: str = "auto"
     max_new_tokens: int = 2048

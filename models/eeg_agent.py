@@ -1,11 +1,14 @@
 """
 EEG Agent: Dual-path architecture for EEG report generation.
 
-Path A (Image): Qwen2.5-VL for EEG montage images (CerebraGloss-style)
-Path B (Signal): LaBraM encoder -> projection -> Qwen2.5-7B adapter (CELM-style)
+For the MME dataset (EEG montage images only), the main pipeline uses
+MRIAgent with EEG-specific prompts (MedGemma-1.5-4B-it), as both MRI
+and EEG images share the same VLM inference approach.
 
-Both paths independently generate text reports. When both are available,
-reports are concatenated. NO fine-tuning — zero-shot inference only.
+This module provides an extended dual-path architecture for the HD-EEG
+external validation dataset, which includes raw EEG signals:
+  Path A (Image): VLM for EEG montage/topography images
+  Path B (Signal): LaBraM encoder -> projection -> LLM adapter
 
 Input: EEG montage images AND/OR raw EEG signals
 Output: Structured EEG report text

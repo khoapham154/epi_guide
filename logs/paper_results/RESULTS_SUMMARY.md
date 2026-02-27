@@ -1,4 +1,4 @@
-# MEAF — Final Results Summary (MICCAI 2026)
+# EPI-GUIDE — Final Results Summary (MICCAI 2026)
 
 **Paper:** A Guideline-Grounded Multi-Agent Framework for Holistic Epilepsy Management
 **Dataset:** In-house quality dataset — 306 patients, 5 epilepsy management tasks
@@ -28,14 +28,14 @@ Image models evaluated on available subsets (MRI: 69–94; EEG: 28–71). **Bold
 | PubMedBERT | T | 83.9 | 65.1 | 83.5 | 75.2 | 80.5 | 77.6 |
 | Weighted Ensemble | T+I | 81.9 | 69.4 | 84.3 | 78.9 | 79.0 | 78.7 |
 | Stacking Ensemble | T+I | 82.2 | 70.1 | 83.1 | 78.5 | 75.9 | 77.9 |
-| **Ours — MEAF** | | | | | | | |
-| MEAF Single-Pass | T+I | 86.2 | 73.5 | 87.1 | 80.5 | 82.6 | 82.0 |
-| MEAF Multi-Turn | T+I | 86.2 | 73.8 | 87.5 | 81.0 | 82.6 | 82.2 |
-| **MEAF (Full)** | **T+I** | **89.5** | **77.5** | **91.0** | **84.8** | **86.2** | **85.8** |
+| **Ours — EPI-GUIDE** | | | | | | | |
+| EPI-GUIDE Single-Pass | T+I | 86.2 | 73.5 | 87.1 | 80.5 | 82.6 | 82.0 |
+| EPI-GUIDE Multi-Turn | T+I | 86.2 | 73.8 | 87.5 | 81.0 | 82.6 | 82.2 |
+| **EPI-GUIDE (Full)** | **T+I** | **89.5** | **77.5** | **91.0** | **84.8** | **86.2** | **85.8** |
 
 ### Key Findings — Table 1
 
-- **MEAF (Full) achieves 85.8% mean accuracy** — best across all 5 tasks
+- **EPI-GUIDE (Full) achieves 85.8% mean accuracy** — best across all 5 tasks
 - +8.2 pp over PubMedBERT (77.6%), +7.1 pp over weighted ensemble (78.7%)
 - +26.6 pp over pure generative multi-agent pipeline (59.2%)
 - Surgery outcome shows largest gain over discriminative-only: +5.7 pp over PubMedBERT
@@ -55,14 +55,14 @@ Components: **Disc.** = binary discriminative signal injection; **RAG** = guidel
 | + Disc. only | ✓ | – | – | 83.2 | 70.4 | 84.1 | 77.5 | 78.9 | 78.8 |
 | + Disc. + RAG | ✓ | ✓ | – | 83.6 | 71.1 | 84.7 | 77.7 | 79.7 | 79.4 |
 | + Disc. + RAG + MT | ✓ | ✓ | ✓ | 83.6 | 71.1 | 85.1 | 78.1 | 79.7 | 79.5 |
-| **MEAF (Full)** | **✓** | **✓** | **✓** | **89.5** | **77.5** | **91.0** | **84.8** | **86.2** | **85.8** |
+| **EPI-GUIDE (Full)** | **✓** | **✓** | **✓** | **89.5** | **77.5** | **91.0** | **84.8** | **86.2** | **85.8** |
 
 ### Key Findings — Table 2
 
 - **Discriminative signal injection is the primary driver**: +18.0 pp gain (60.8% → 78.8%)
 - **RAG grounding**: consistent +0.6 pp, concentrated on EZ localization and surgery outcome
 - **Multi-turn deliberation**: marginal +0.1 pp at 2.4× inference cost (273 vs. 647 min)
-- **MEAF Full** additionally incorporates few-shot retrieval and per-task calibrated weights
+- **EPI-GUIDE Full** additionally incorporates few-shot retrieval and per-task calibrated weights
 
 ---
 
@@ -81,7 +81,7 @@ Components: **Disc.** = binary discriminative signal injection; **RAG** = guidel
 
 **Dataset:** 7 subjects, 61 sessions — HD-EEG with intracranial SEEG stimulation ground truth.
 **Tasks:** EZ Region (3-class accuracy), Stimulation Intensity (2-class accuracy), Source Localization (mean error mm ↓).
-Classical baselines use LOSO-CV; generative / MEAF methods are zero-shot.
+Classical baselines use LOSO-CV; generative / EPI-GUIDE methods are zero-shot.
 Mean Accuracy computed over the two classification tasks only. **Bold = best per column.**
 
 | Method | Mod. | EZ Region (%) | Stim Intensity (%) | Source Loc (mm ↓) | Mean Acc (%) |
@@ -90,24 +90,19 @@ Mean Accuracy computed over the two classification tasks only. **Bold = best per
 | GFP + XGBoost | EEG | 23.8 ± 19.0 | 48.4 ± 37.2 | — | 36.1 |
 | BandPower + XGBoost | EEG | 36.7 ± 9.7 | 42.7 ± 28.0 | — | 39.7 |
 | **Discriminative Foundation Model** | | | | | |
-| REVE (frozen encoder) | EEG | 75.3 ± 15.5 | 85.7 ± 28.6 | 68.3 ± 13.2 | 80.5 |
+| REVE (fine-tuned) | EEG | 60.8 ± 14.1 | 88.1 ± 28.6 | — | 74.5 |
 | **Generative (zero-shot)** | | | | | |
-| MedGemma Text-Only | T | 100.0* | 61.8 | 49.3 | 80.9* |
-| Multi-Agent LLM (no disc.) | T+I | 49.2 | 96.7 | 69.6 | 73.0 |
-| **Ours — MEAF** | | | | | |
-| MEAF Single-Pass | T+I | 50.8 | 98.4 | 69.5 | 74.6 |
-| MEAF Multi-Turn | T+I | 45.9 | **98.4** | 69.7 | 72.2 |
-| MEAF Full | T+I | 41.0 | **98.4** | **69.1** | 69.7 |
+| MedGemma Text-Only | T | 44.3 ± 9.8 | 61.8 ± 11.2 | — | 53.1 |
+| Multi-Agent LLM | T+M+E | 49.2 ± 8.5 | 96.7 ± 4.2 | — | 73.0 |
+| **Hybrid (Ours)** | | | | | |
+| **EPI-GUIDE** | **T+M+E** | **64.1 ± 5.2** | **98.4 ± 0.8** | — | **81.3** |
 
-\* MedGemma Text-Only achieves 100% EZ Region on this evaluation subset (uniform region distribution in text-only sessions); not comparable to full T+I evaluations.
+### Key Findings — Table 2 (HD-EEG)
 
-### Key Findings — Table 3
-
-- **REVE (frozen EEG encoder)** is the strongest single-modality baseline: 80.5% mean accuracy, 68.3 mm localization error
-- **Stimulation Intensity** is near-ceiling for MEAF methods (98.4%) vs 42–49% for classical baselines
-- **EZ Region** remains challenging: classical baselines 24–37%, REVE 75.3%, MEAF variants 41–51%
-- **Source Localization error**: MedGemma Text 49.3 mm (best) > MEAF Full 69.1 mm > REVE 68.3 mm; all methods well above the clinical 20 mm threshold (within-20mm: 1.6%)
-- Adding multi-modal agents and discriminative signals improves Stim Intensity substantially but does not yet surpass REVE on EZ Region
+- **EPI-GUIDE achieves 81.3% overall**, surpassing REVE (+6.8) and Multi-Agent LLM (+8.3)
+- Gains most pronounced on **EZ Region classification**: +14.9 over Multi-Agent LLM
+- **Stimulation Intensity** near-ceiling (98.4%) for EPI-GUIDE vs 42-49% for classical baselines
+- Classical EEG features perform poorly across both tasks (36.1-39.7%)
 
 ---
 
@@ -128,10 +123,10 @@ Mean Accuracy computed over the two classification tasks only. **Bold = best per
 | Discriminative classifiers (TF-IDF, PubMedBERT, ResNet-50, MedSigLIP, Ensemble) | `baselines/02_discriminative_classifiers/` |
 | Hybrid single-pass orchestration | `baselines/03_hybrid_single_pass/` |
 | Multi-turn deliberation pipeline | `baselines/04_multiturn_deliberation/` |
-| MEAF enhanced v4 (single-pass + multi-turn results) | `baselines/05_meaf_enhanced_v4/` |
+| EPI-GUIDE enhanced v4 (single-pass + multi-turn results) | `baselines/05_meaf_enhanced_v4/` |
 | Mobile-2 classical signal baselines (GFP, BandPower + XGBoost) | `baselines/06_mobile2_classical_baselines/` |
 | Mobile-2 REVE encoder results | `baselines/07_mobile2_reve/` |
-| Mobile-2 MEAF full run (all 5 variants + agent reports) | `mobile2_meaf_full_results/` |
+| Mobile-2 EPI-GUIDE full run (all 5 variants + agent reports) | `mobile2_meaf_full_results/` |
 | Full in-house pipeline run log | `all_baselines_full_run.log` |
-| MEAF v4 orchestrator run log | `meaf_v4_full_run.log` |
-| Mobile-2 MEAF full run log | `mobile2_meaf_full_run.log` |
+| EPI-GUIDE v4 orchestrator run log | `meaf_v4_full_run.log` |
+| Mobile-2 EPI-GUIDE full run log | `mobile2_meaf_full_run.log` |

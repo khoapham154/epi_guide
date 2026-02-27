@@ -1,0 +1,52 @@
+{
+  "epilepsy_type": {
+    "Focal": 0,
+    "Generalized": 1,
+    "Other": 2
+  },
+  "epilepsy_type_id2label": {
+    "0": "Focal",
+    "1": "Generalized",
+    "2": "Other"
+  },
+  "seizure_type": {
+    "Focal Onset": 0,
+    "Generalized Onset": 1,
+    "Unknown/Other": 2
+  },
+  "seizure_type_id2label": {
+    "0": "Focal Onset",
+    "1": "Generalized Onset",
+    "2": "Unknown/Other"
+  },
+  "ez_localization": {
+    "Temporal": 0,
+    "Extratemporal": 1,
+    "Multifocal/Hemispheric": 2
+  },
+  "ez_localization_id2label": {
+    "0": "Temporal",
+    "1": "Extratemporal",
+    "2": "Multifocal/Hemispheric"
+  },
+  "aed_response": {
+    "Drug-Resistant": 0,
+    "Responsive": 1,
+    "On Treatment (Unspecified)": 2
+  },
+  "aed_response_id2label": {
+    "0": "Drug-Resistant",
+    "1": "Responsive",
+    "2": "On Treatment (Unspecified)"
+  },
+  "surgery_outcome": {
+    "Seizure-Free": 0,
+    "Improved": 1,
+    "No Improvement": 2
+  },
+  "surgery_outcome_id2label": {
+    "0": "Seizure-Free",
+    "1": "Improved",
+    "2": "No Improvement"
+  }
+}

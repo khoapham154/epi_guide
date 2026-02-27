@@ -55,7 +55,7 @@ class OrchestratorAgent:
         self.tokenizer = None
 
     def load_model(self, device_map: Optional[str] = None, max_memory: Optional[dict] = None):
-        """Load Llama-3.3-70B and build RAG index."""
+        """Load orchestrator LLM and build RAG index."""
         if self.model is not None:
             return
 

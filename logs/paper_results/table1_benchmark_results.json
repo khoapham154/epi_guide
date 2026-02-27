@@ -158,8 +158,8 @@
       "mean": 77.9
     },
     {
-      "category": "Ours — MEAF",
-      "method": "MEAF Single-Pass",
+      "category": "Hybrid (Ours)",
+      "method": "EPI-GUIDE Single-Pass",
       "modality": "T+I",
       "epilepsy_type": 86.2,
       "seizure_type": 73.5,
@@ -169,8 +169,8 @@
       "mean": 82.0
     },
     {
-      "category": "Ours — MEAF",
-      "method": "MEAF Multi-Turn",
+      "category": "Hybrid (Ours)",
+      "method": "EPI-GUIDE Multi-Turn",
       "modality": "T+I",
       "epilepsy_type": 86.2,
       "seizure_type": 73.8,
@@ -180,8 +180,8 @@
       "mean": 82.2
     },
     {
-      "category": "Ours — MEAF",
-      "method": "MEAF (Full)",
+      "category": "Hybrid (Ours)",
+      "method": "EPI-GUIDE (Full)",
       "modality": "T+I",
       "epilepsy_type": 89.5,
       "seizure_type": 77.5,

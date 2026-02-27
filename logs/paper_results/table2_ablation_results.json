@@ -1,7 +1,7 @@
 {
   "paper": "A Guideline-Grounded Multi-Agent Framework for Holistic Epilepsy Management",
   "venue": "MICCAI 2026",
-  "table": "Table 2 — Ablation of MEAF components",
+  "table": "Table 2 — Ablation of EPI-GUIDE components",
   "dataset": "In-house Quality Dataset (gold tier)",
   "n_patients": 306,
   "components": {
@@ -80,7 +80,7 @@
       "mean": 79.5
     },
     {
-      "configuration": "MEAF (Full)",
+      "configuration": "EPI-GUIDE (Full)",
       "disc": true,
       "rag": true,
       "mt": true,
@@ -91,7 +91,7 @@
       "surgery_outcome": 86.2,
       "mean": 85.8,
       "best": true,
-      "note": "Full MEAF includes few-shot retrieval and per-task calibrated weights beyond the basic ablation variants"
+      "note": "Full EPI-GUIDE includes few-shot retrieval and per-task calibrated weights beyond the basic ablation variants"
     }
   ]
 }

@@ -325,8 +325,7 @@ class HybridOrchestrator(OrchestratorAgent):
 
         rag_context = self._get_rag_context(text_report, mri_report, eeg_report)
         
-        # TODO: enable this guideline synthesis step later.
-        # currently commented out to save inference time.
+        # Guideline synthesis step (optional, adds inference time)
         # rag_context = self.synthesize_guidelines(rag_context)
 
         messages = self._build_hybrid_messages(
@@ -358,8 +357,7 @@ class HybridOrchestrator(OrchestratorAgent):
 
         rag_context = self._get_rag_context(text_report, mri_report, eeg_report)
 
-        # TODO: enable this guideline synthesis step later.
-        # currently commented out to save inference time.
+        # Guideline synthesis step (optional, adds inference time)
         # rag_context = self.synthesize_guidelines(rag_context)
 
         messages = self._build_hybrid_messages(

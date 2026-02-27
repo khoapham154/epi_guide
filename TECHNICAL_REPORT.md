@@ -1,8 +1,8 @@
 # EPI-GUIDE: Technical Report
-## Multimodal Expert Agent Fusion for Epilepsy Presurgical Classification
+## Clinical Guideline-Grounded Hybrid Agentic Framework for Holistic Epilepsy Management
 
 **Version:** 2.0
-**Status:** Implementation complete, evaluation pending
+**Status:** Implementation complete, evaluation complete
 
 ---
 
