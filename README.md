@@ -292,7 +292,7 @@ The full multi-turn pipeline requires 8x A100-80GB GPUs:
 | Text Agent | MedGemma-27B | 0, 1 | ~54 GB |
 | MRI Agent | MedGemma-4B | 2 | ~8 GB |
 | EEG Agent | MedGemma-4B | 3 | ~8 GB |
-| Orchestrator | Llama-3.3-70B | 4, 5, 6, 7 | ~240 GB |
+| Orchestrator | gpt-oss-120b | 4, 5, 6, 7 | ~240 GB |
 
 For setups with fewer GPUs, use `run_agent_pipeline.py` which loads/unloads models sequentially.
 
