@@ -1,0 +1,95 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    name: Code Quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install linting tools
+        run: pip install ruff
+
+      - name: Lint with ruff
+        run: ruff check . --select E,F,I --ignore E501
+
+  validate:
+    name: Validate Project Structure
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+          pip install transformers accelerate sentencepiece protobuf
+          pip install sentence-transformers xgboost scikit-learn pandas numpy
+          pip install Pillow tqdm huggingface-hub
+
+      - name: Validate imports
+        run: |
+          python -c "from configs.default import Config; print('configs OK')"
+          python -c "from models.report_parser import parse_to_label_indices; print('report_parser OK')"
+          python -c "from models.rag import RAGModule; print('rag OK')"
+          python -c "from models.multi_turn_pipeline import MultiTurnPipeline; print('multi_turn OK')"
+          python -c "from data.dataset import load_label_maps, load_classification_csv; print('dataset OK')"
+
+      - name: Validate configs
+        run: |
+          python -c "
+          from configs.default import Config
+          cfg = Config()
+          assert cfg.pipeline.parallel_agents is not None
+          assert cfg.orchestrator.rag_top_k > 0
+          assert cfg.multi_turn.max_rounds > 0
+          print(f'Pipeline: parallel={cfg.pipeline.parallel_agents}')
+          print(f'RAG: top_k={cfg.orchestrator.rag_top_k}')
+          print(f'Multi-turn: max_rounds={cfg.multi_turn.max_rounds}')
+          print('All configs valid')
+          "
+
+      - name: Check project structure
+        run: |
+          echo "Checking required files and directories..."
+          for f in \
+            configs/default.py \
+            models/text_agent.py \
+            models/mri_agent.py \
+            models/eeg_agent.py \
+            models/orchestrator.py \
+            models/hybrid_orchestrator.py \
+            models/multi_turn_pipeline.py \
+            models/rag.py \
+            models/report_parser.py \
+            baselines/evaluate_baselines.py \
+            data/dataset.py \
+            run_agent_pipeline.py \
+            run_hybrid_pipeline.py \
+            run_multiturn_pipeline.py \
+            run_all_baselines.sh \
+            smoke_test.sh \
+            verify_setup.py \
+            requirements.txt; do
+            if [ -f "$f" ]; then
+              echo "  OK: $f"
+            else
+              echo "  MISSING: $f" && exit 1
+            fi
+          done
+          echo "All required files present"
